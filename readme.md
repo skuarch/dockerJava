@@ -8,8 +8,14 @@ what I need for this workshop?
   - Ubuntu image 16.04
   - Internet connection
 
+# Ubuntu image
+Firts of all get the image of ubuntu
+```docker
+docker pull ubuntu:16.04
+```
+
 # Docker network
-Firts off all create one network in docker
+Create one network in docker
 ```docker
 docker network create load-balancer-net
 ```
