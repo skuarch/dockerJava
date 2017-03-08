@@ -1,0 +1,31 @@
+## build jar 
+mvn clean package
+
+## create network
+docker network create load-balancer-net
+ 
+
+## build image web app
+docker build --no-cache=true -t workshop/web .
+
+
+## create containers web app
+docker run --name web1 -t -i -d --net=load-balancer-net workshop/web
+docker run --name web2 -t -i -d --net=load-balancer-net workshop/web
+
+
+## build image load balancer
+docker build --no-cache=true --network load-balancer-net -t workshop/nginx .
+
+
+## container load balancer
+docker run --name nginx --net=load-balancer-net -i -t -d -p 8080:8080 workshop/nginx
+
+
+## other commands
+docker ps -a
+docker images
+docker exec -i -t <contrainerName> /bin/bash
+docker rm <contrainerName>
+docker rmi <imageId>
+docker start <contrainerName>
